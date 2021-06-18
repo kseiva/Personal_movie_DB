@@ -38,7 +38,8 @@
 
 'use strict';
 
-let numberOfFilms, filmTitle, filmRate;
+let numberOfFilms, filmTitle, filmRate, i = 0;
+
 while (!(numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?', ''))) {
     alert('Поле не может быть пустым!');
 }
@@ -51,19 +52,19 @@ const personalMovieDB = {
     private: false,
 };
 
-let i = numberOfFilms;
+while (i < 2) {
+    filmTitle = prompt('Один из последних просмотренных фильмов?', '');
+    filmRate = prompt('На сколько оцените его?', '');
 
-while (i) {
-    while (!(filmTitle = prompt('Один из последних просмотренных фильмов?', ''))) {
-        alert('Поле не может быть пустым!');
+    if (filmTitle != null && filmRate != null && filmTitle != '' && filmRate != '' && filmTitle.length < 50) {
+        personalMovieDB.movies[filmTitle] = filmRate;
+        console.log('ok');
+    } else {
+        console.log('error');
+        continue;
     }
 
-    while (!(filmRate = prompt('На сколько оцените его?', ''))) {
-        alert('Поле не может быть пустым!');
-    }
-
-    i--;
-    personalMovieDB.movies[filmTitle] = filmRate;
+    i++;
 }
 
 console.log(personalMovieDB);
